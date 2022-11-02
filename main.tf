@@ -16,7 +16,6 @@ module "vpc" {
   private_subnet_tags = {
     "Tier" = "Private"
   }
-
 }
 
 module "ec2_instance" {
@@ -29,4 +28,5 @@ module "ec2_instance" {
   iam_instance_profile = aws_iam_instance_profile.instance_profile.name
 
   subnet_id = element(data.aws_subnets.public.ids, 0)
+  user_data = file("env/setup.sh")
 }
