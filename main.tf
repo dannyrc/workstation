@@ -10,12 +10,8 @@ module "vpc" {
   enable_nat_gateway = false
   enable_vpn_gateway = false
 
-  public_subnet_tags = {
-    "Tier" = "Public"
-  }
-  private_subnet_tags = {
-    "Tier" = "Private"
-  }
+  public_subnet_tags  = { "Tier" = "Public" }
+  private_subnet_tags = { "Tier" = "Private" }
 }
 
 module "ec2_instance" {
@@ -23,7 +19,7 @@ module "ec2_instance" {
 
   name          = local.instance_name
   ami           = data.aws_ami.ubuntu.image_id
-  instance_type = "t2.micro"
+  instance_type = var.instance_type
 
   iam_instance_profile = aws_iam_instance_profile.instance_profile.name
 

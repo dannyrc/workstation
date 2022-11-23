@@ -8,6 +8,11 @@ variable "workstation_name" {
   default     = "workstation"
 }
 
+variable "instance_type" {
+  description = "Type of EC2 instance"
+  default     = "t2.micro"
+}
+
 locals {
   vpc_name                             = join("-", [var.workstation_name, "vpc"])
   security_group_name                  = join("-", [var.workstation_name, "sg"])
