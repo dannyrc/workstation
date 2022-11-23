@@ -7,7 +7,7 @@ module "vpc" {
 
   public_subnets     = ["10.0.0.0/28"]
   private_subnets    = ["10.0.1.0/28"]
-  enable_nat_gateway = false
+  enable_nat_gateway = true
   enable_vpn_gateway = false
 
   public_subnet_tags  = { "Tier" = "Public" }
@@ -23,6 +23,6 @@ module "ec2_instance" {
 
   iam_instance_profile = aws_iam_instance_profile.instance_profile.name
 
-  subnet_id = element(data.aws_subnets.public.ids, 0)
+  subnet_id = element(data.aws_subnets.private.ids, 0)
   user_data = file("env/setup.sh")
 }
