@@ -1,5 +1,5 @@
 module "vpc" {
-  source = "registry.terraform.io/terraform-aws-modules/vpc/aws"
+  source = "terraform-aws-modules/vpc/aws"
 
   name = local.vpc_name
   cidr = "10.0.0.0/23"
@@ -15,7 +15,7 @@ module "vpc" {
 }
 
 module "ec2_instance" {
-  source = "registry.terraform.io/terraform-aws-modules/ec2-instance/aws"
+  source = "terraform-aws-modules/ec2-instance/aws"
 
   name          = local.instance_name
   ami           = data.aws_ami.ubuntu.image_id
